@@ -38,7 +38,7 @@ jobs:
         run: ls -R /tmp/proto/OmniSphere
 
       - name: Copiar arquivos para o repositório de protos do OmniSphere
-        run: cp -r /tmp/proto/OmniSphere/* grpc-proto-files/proto/OmniSphere/
+        run: cp -r /tmp/proto/OmniSphere grpc-proto-files/proto/
 
       - name: Verificar mudanças no repositório antes do commit
         run: |
