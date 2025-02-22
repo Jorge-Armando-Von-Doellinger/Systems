@@ -39,7 +39,7 @@ jobs:
           ls -R
 
       - name: Copiar arquivos para o repositório de protos do OmniSphere
-        run: cp -r . grpc-proto-files/proto/OmniSphere
+        run: cp -r /tmp/proto/OmniSphere grpc-proto-files/proto/OmniSphere
 
       - name: Commit e push para o repositório de protos do OmniSphere
         env:
