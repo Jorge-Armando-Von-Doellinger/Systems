@@ -10,8 +10,8 @@ jobs:
       - name: Checkout de repositório de origem
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GH_TOKEN }}
-          repository: Jorge-Armando-Von-Doellinger/OmniSphere
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
 
       - name: Criar diretórios para arquivos proto
         run: |
@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: Jorge-Armando-Von-Doellinger/grpc-proto-files
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           path: grpc-proto-files
           
       - name: Listar .protos capturados
