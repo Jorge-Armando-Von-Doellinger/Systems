@@ -11,11 +11,9 @@ jobs:
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          repository: Jorge-Armando-Von-Doellinger/OmniSphere
 
       - name: Criar diretórios para arquivos proto
-        run: |
-          mkdir -p /tmp/proto/OmniSphere
+        run: mkdir -p /tmp/proto/OmniSphere
 
       - name: Listar diretórios disponíveis
         run: |
@@ -33,22 +31,27 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: grpc-proto-files
           
+      - name: Criar diretório de destino se não existir
+        run: mkdir -p grpc-proto-files/proto/OmniSphere
+
       - name: Listar .protos capturados
-        run: |
-          mkdir -p /tmp/proto/OmniSphere
-          ls -R
+        run: ls -R /tmp/proto/OmniSphere
 
       - name: Copiar arquivos para o repositório de protos do OmniSphere
-        run: cp -r . grpc-proto-files/proto/OmniSphere
+        run: cp -r /tmp/proto/OmniSphere/* grpc-proto-files/proto/OmniSphere/
+
+      - name: Verificar mudanças no repositório antes do commit
+        run: |
+          cd grpc-proto-files
+          git status
 
       - name: Commit e push para o repositório de protos do OmniSphere
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd grpc-proto-files
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add .
-          git commit -m "Adicionando arquivos proto na pasta proto/OmniSphere"
-          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/Jorge-Armando-Von-Doellinger/grpc-proto-files.git
+          git commit -m "Adicionando arquivos proto na pasta proto/OmniSphere" || echo "Nenhuma mudança para commitar"
           git push origin HEAD:main
