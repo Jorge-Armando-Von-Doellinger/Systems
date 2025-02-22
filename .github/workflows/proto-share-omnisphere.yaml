@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: Checkout de repositório de origem
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3 
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
