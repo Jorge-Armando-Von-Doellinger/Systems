@@ -11,6 +11,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.GH_TOKEN }}
+          repository: Jorge-Armando-Von-Doellinger/OmniSphere
 
       - name: Criar diretórios para arquivos proto
         run: |
