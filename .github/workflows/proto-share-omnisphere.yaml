@@ -28,7 +28,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: Jorge-Armando-Von-Doellinger/grpc-proto-files
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
           path: grpc-proto-files
           
       - name: Criar diretório de destino se não existir
